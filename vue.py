@@ -27,7 +27,7 @@ def afficherResultat(JoueurGagnant):
 
 def afficherErreur(type_erreur):
     if type_erreur == "format":
-        print("⚠Erreur : Format invalide. Utilisez Lettre + Chiffre (ex: A1).")
+        print("Erreur : Format invalide. Utilisez Lettre + Chiffre (ex: A1).")
     elif type_erreur == "occupee":
         print("Erreur : Cette case est déjà occupée !")
     elif type_erreur == "limites":
