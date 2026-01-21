@@ -1,7 +1,2 @@
-/.idea/shelf/Uncommitted_changes_before_Checkout_at_21-Jan-26_10_05__Changes_.xml
-/.idea/vcs.xml
-/.idea/.gitignore
-/.idea/Algo.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/inspectionProfiles/profiles_settings.xml
+.idea/
+*.iml

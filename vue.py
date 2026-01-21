@@ -61,3 +61,5 @@ ma_grille = [
     [" ", "X", " "],
     ["O", " ", "X"]
 ]
+
+afficherGrille(ma_grille)
