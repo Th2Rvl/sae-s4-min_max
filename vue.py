@@ -14,6 +14,14 @@ def afficherGrille(grille):
     print("  └───┴───┴───┘")
 
 
+def afficherBienvenue():
+    print("\n" + "*" * 30)
+    print("*     JEU DU TIC-TAC-TOE     *")
+    print("*" * 30)
+    print("Règles : Alignez 3 symboles pour gagner.")
+    print("Format des coups : Lettre + Chiffre (ex: B2)\n")
+
+
 def afficherTourJoue(nomJoueur, caseJoue):
     print(f"Le joueur {nomJoueur} a joué en case {caseJoue}.")
 
@@ -42,6 +50,10 @@ def demanderNomJoueur():
     return input("Entrez votre nom : ")
 
 
+def demanderRejouer():
+    reponse = input("\nVoulez-vous rejouer ? (o/n) : ").lower()
+    return reponse == 'o' or reponse == 'oui'
+
 # ---- Test ----
 
 ma_grille = [
@@ -49,7 +61,3 @@ ma_grille = [
     [" ", "X", " "],
     ["O", " ", "X"]
 ]
-
-afficherGrille(ma_grille)
-
-print(demanderNomJoueur())
