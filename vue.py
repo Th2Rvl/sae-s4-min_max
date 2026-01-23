@@ -3,12 +3,14 @@ def afficherGrille(grille):
     print("    1   2   3")
     print("  ┌───┬───┬───┐")
 
-    for i, ligne in enumerate(grille):
+    tableau = grille.tableauCoup if hasattr(grille, "tableauCoup") else grille
+
+    for i, ligne in enumerate(tableau):
 
         contenu = "│".join([f" {cell} " for cell in ligne])
         print(f"{lettres[i]} │{contenu}│")
 
-        if i < len(grille) - 1:
+        if i < len(tableau) - 1:
             print("  ├───┼───┼───┤")
 
     print("  └───┴───┴───┘")
@@ -43,7 +45,10 @@ def afficherErreur(type_erreur):
 
 
 def demanderCoup(nomJoueur):
-    return input(f"Joueur {nomJoueur}, entrez une case (ex: B2) : ").strip().upper()
+    chaine = input(f"Joueur {nomJoueur}, entrez une case (ex: B2) : ").strip().upper()
+    ligne = int(chaine[0])
+    colonne = int(chaine[1])
+    return [ligne, colonne]
 
 
 def demanderNomJoueur():
@@ -55,11 +60,3 @@ def demanderRejouer():
     return reponse == 'o' or reponse == 'oui'
 
 # ---- Test ----
-
-ma_grille = [
-    ["X", "O", " "],
-    [" ", "X", " "],
-    ["O", " ", "X"]
-]
-
-afficherGrille(ma_grille)
