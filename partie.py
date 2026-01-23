@@ -2,7 +2,7 @@ import random
 
 from grille import Grille
 from joueur import Joueur, JoueurHumain, IA
-from vue import afficherBienvenue, demanderNomJoueur, afficherGrille, demanderCoup, afficherTourJoue
+from vue import afficherBienvenue, demanderNomJoueur, afficherGrille, demanderCoup, afficherTourJoue, nettoyageConsole
 
 
 class Partie:
@@ -20,10 +20,11 @@ class Partie:
             if self.joueurHumain.aSonTour:
                 coup = demanderCoup(self.joueurHumain.nom)
             else: coup = self.ia.choisirCoup()
-            self.grille.modifierGrille(coup[0], coup[1], self.joueurHumain.pion)
+            self.grille.modifierGrille(coup[0], coup[1], self.joueurHumain.pion if self.joueurHumain.aSonTour else self.ia.pion)
             afficherTourJoue(self.joueurHumain.nom if self.joueurHumain.aSonTour else self.ia.nom, coup)
 
             # Changer de joueur
             self.joueurHumain.aSonTour = False if self.joueurHumain.aSonTour else True
             self.ia.aSonTour = False if self.ia.aSonTour else True
 
+            nettoyageConsole()

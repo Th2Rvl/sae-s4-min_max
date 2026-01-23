@@ -1,3 +1,6 @@
+import os
+
+
 def afficherGrille(grille):
     lettres = ["A", "B", "C"]
     print("    1   2   3")
@@ -46,9 +49,15 @@ def afficherErreur(type_erreur):
 
 def demanderCoup(nomJoueur):
     chaine = input(f"Joueur {nomJoueur}, entrez une case (ex: B2) : ").strip().upper()
-    ligne = int(chaine[0])
-    colonne = int(chaine[1])
-    return [ligne, colonne]
+    ligne = chaine[0]
+    if ligne not in ["A", "B", "C"] or int(chaine[1]) not in range(1, 4):
+        afficherErreur("format")
+        demanderCoup(nomJoueur)
+        return None
+    else:
+        ligne = ord(ligne) - ord("A")
+        colonne = int(chaine[1]) - 1
+        return [ligne, colonne]
 
 
 def demanderNomJoueur():
@@ -58,5 +67,9 @@ def demanderNomJoueur():
 def demanderRejouer():
     reponse = input("\nVoulez-vous rejouer ? (o/n) : ").lower()
     return reponse == 'o' or reponse == 'oui'
+
+def nettoyageConsole():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 
 # ---- Test ----

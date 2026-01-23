@@ -5,7 +5,7 @@ class Joueur:
     def __init__(self, nom, aSonTour):
         self.nom = nom
         self.aSonTour = aSonTour
-        self.pion = "O" if self.aSonTour else "X"
+        self.pion = "X" if self.aSonTour else "O"
 
 class JoueurHumain(Joueur):
     def __init__(self, nom, aSonTour):
