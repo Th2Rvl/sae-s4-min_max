@@ -12,8 +12,8 @@ class Partie:
         self.grille = Grille()
 
     def lancerPartie(self):
-        afficherBienvenue()
         while not self.grille.estComplete():
+            afficherBienvenue()
             afficherGrille(self.grille)
 
             coup = ""
