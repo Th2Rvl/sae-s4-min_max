@@ -2,7 +2,8 @@ import random
 
 from grille import Grille
 from joueur import Joueur, JoueurHumain, IA
-from vue import afficherBienvenue, demanderNomJoueur, afficherGrille, demanderCoup, afficherTourJoue, nettoyageConsole
+from vue import afficherBienvenue, demanderNomJoueur, afficherGrille, demanderCoup, afficherTourJoue, nettoyageConsole, \
+    afficherResultat
 
 
 class Partie:
@@ -13,18 +14,41 @@ class Partie:
 
     def lancerPartie(self):
         afficherBienvenue()
-        while not self.grille.estComplete():
+        victoire = False
+        gagnant = ""
+
+        while not self.grille.estComplete() and not victoire:
+            # On affiche la grille au début de chaque tour
             afficherGrille(self.grille)
 
-            coup = ""
+            # Identification du joueur actuel
+            joueur_actuel = self.joueurHumain if self.joueurHumain.aSonTour else self.ia
+
+            # Récupération du coup
             if self.joueurHumain.aSonTour:
                 coup = demanderCoup(self.joueurHumain.nom)
-            else: coup = self.ia.choisirCoup()
-            self.grille.modifierGrille(coup[0], coup[1], self.joueurHumain.pion if self.joueurHumain.aSonTour else self.ia.pion)
-            afficherTourJoue(self.joueurHumain.nom if self.joueurHumain.aSonTour else self.ia.nom, coup)
+            else:
+                coup = self.ia.choisirCoup()
 
-            # Changer de joueur
-            self.joueurHumain.aSonTour = False if self.joueurHumain.aSonTour else True
-            self.ia.aSonTour = False if self.ia.aSonTour else True
+            # Action sur la grille
+            self.grille.modifierGrille(coup[0], coup[1], joueur_actuel.pion)
 
-            nettoyageConsole()
+            # Vérification de la victoire
+            if self.grille.verifierGagnant(joueur_actuel.pion):
+                victoire = True
+                gagnant = joueur_actuel.nom
+
+            afficherTourJoue(joueur_actuel.nom, coup)
+
+            if not victoire:
+                # Changement de tour
+                self.joueurHumain.aSonTour = not self.joueurHumain.aSonTour
+                self.ia.aSonTour = not self.ia.aSonTour
+                nettoyageConsole()
+
+        nettoyageConsole()
+        afficherGrille(self.grille)  # Afficher la grille finale
+        if victoire:
+            afficherResultat(gagnant)
+        else:
+            afficherResultat("Nul")
