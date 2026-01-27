@@ -13,8 +13,6 @@ class Partie:
         self.grille = Grille()
 
     def lancerPartie(self):
-        while not self.grille.estComplete():
-            afficherBienvenue()
         afficherBienvenue()
         victoire = False
         gagnant = ""
@@ -40,6 +38,7 @@ class Partie:
                 victoire = True
                 gagnant = joueur_actuel.nom
 
+            # Affichage du tour et nettoyage (optionnel ici pour voir le dernier coup)
             afficherTourJoue(joueur_actuel.nom, coup)
 
             if not victoire:
