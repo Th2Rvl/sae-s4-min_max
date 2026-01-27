@@ -19,3 +19,25 @@ class Grille:
             if " " in col:
                 return False
         return True
+
+    def verifierGagnant(self, pion):
+        etat = self.tableauCoup
+        lignes_victoire = [
+            [etat[0][0], etat[0][1], etat[0][2]],
+            [etat[1][0], etat[1][1], etat[1][2]],
+            [etat[2][0], etat[2][1], etat[2][2]],
+            [etat[0][0], etat[1][0], etat[2][0]],
+            [etat[0][1], etat[1][1], etat[2][1]],
+            [etat[0][2], etat[1][2], etat[2][2]],
+            [etat[0][0], etat[1][1], etat[2][2]],
+            [etat[2][0], etat[1][1], etat[0][2]],
+        ]
+        return [pion, pion, pion] in lignes_victoire
+
+    def obtenirCasesVides(self):
+        vides = []
+        for x in range(3):
+            for y in range(3):
+                if self.tableauCoup[x][y] == " ":
+                    vides.append([x, y])
+        return vides
