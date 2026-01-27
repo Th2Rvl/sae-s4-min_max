@@ -48,16 +48,30 @@ def afficherErreur(type_erreur):
 
 
 def demanderCoup(nomJoueur):
-    chaine = input(f"Joueur {nomJoueur}, entrez une case (ex: B2) : ").strip().upper()
-    ligne = chaine[0]
-    if ligne not in ["A", "B", "C"] or int(chaine[1]) not in range(1, 4):
-        afficherErreur("format")
-        demanderCoup(nomJoueur)
-        return None
-    else:
-        ligne = ord(ligne) - ord("A")
-        colonne = int(chaine[1]) - 1
-        return [ligne, colonne]
+    while True:
+        try:
+            chaine = input(f"Joueur {nomJoueur}, entrez une case (ex: B2) : ").strip().upper()
+
+            # Vérification de la longueur
+            if len(chaine) != 2:
+                afficherErreur("format")
+                continue
+
+            ligne = chaine[0]
+            colonne_str = chaine[1]
+
+            # Vérification des valeurs
+            if ligne not in ["A", "B", "C"] or colonne_str not in ["1", "2", "3"]:
+                afficherErreur("limites")
+                continue
+
+            # Conversion
+            ligne = ord(ligne) - ord("A")
+            colonne = int(colonne_str) - 1
+            return [ligne, colonne]
+
+        except (ValueError, IndexError):
+            afficherErreur("format")
 
 
 def demanderNomJoueur():

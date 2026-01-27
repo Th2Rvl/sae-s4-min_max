@@ -20,6 +20,14 @@ class Grille:
                 return False
         return True
 
+    def copier(self):
+        """Crée une copie de la grille"""
+        nouvelle_grille = Grille()
+        for i in range(3):
+            for j in range(3):
+                nouvelle_grille.tableauCoup[i][j] = self.tableauCoup[i][j]
+        return nouvelle_grille
+
     def verifierGagnant(self, pion):
         etat = self.tableauCoup
         lignes_victoire = [
@@ -41,3 +49,24 @@ class Grille:
                 if self.tableauCoup[x][y] == " ":
                     vides.append([x, y])
         return vides
+
+    def obtenirToutesLignes(self):
+        """
+        Retourne toutes les lignes (horizontales, verticales, diagonales)
+        Pour la fonction d'évaluation de l'IA
+        """
+        etat = self.tableauCoup
+        lignes = [
+            # Lignes horizontales
+            [etat[0][0], etat[0][1], etat[0][2]],
+            [etat[1][0], etat[1][1], etat[1][2]],
+            [etat[2][0], etat[2][1], etat[2][2]],
+            # Colonnes verticales
+            [etat[0][0], etat[1][0], etat[2][0]],
+            [etat[0][1], etat[1][1], etat[2][1]],
+            [etat[0][2], etat[1][2], etat[2][2]],
+            # Diagonales
+            [etat[0][0], etat[1][1], etat[2][2]],
+            [etat[2][0], etat[1][1], etat[0][2]],
+        ]
+        return lignes

@@ -28,7 +28,7 @@ class Partie:
             if self.joueurHumain.aSonTour:
                 coup = demanderCoup(self.joueurHumain.nom)
             else:
-                coup = self.ia.choisirCoup()
+                coup = self.ia.choisirCoup(self.grille)
 
             # Action sur la grille
             self.grille.modifierGrille(coup[0], coup[1], joueur_actuel.pion)
