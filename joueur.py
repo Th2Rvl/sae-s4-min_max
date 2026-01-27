@@ -11,8 +11,6 @@ class JoueurHumain(Joueur):
     def __init__(self, nom, aSonTour):
         super().__init__(nom, aSonTour)
 
-    def choisirCoup(self):
-        return int(input(f"{self.nom}, choisissez un coup comme par exemple 0, 0 : "))
 
 class IA(Joueur):
     def __init__(self, aSonTour):

@@ -13,6 +13,8 @@ class Partie:
         self.grille = Grille()
 
     def lancerPartie(self):
+        while not self.grille.estComplete():
+            afficherBienvenue()
         afficherBienvenue()
         victoire = False
         gagnant = ""
