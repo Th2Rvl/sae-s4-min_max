@@ -26,7 +26,11 @@ class Partie:
 
             # Récupération du coup
             if self.joueurHumain.aSonTour:
-                coup = demanderCoup(self.joueurHumain.nom)
+                coup = ""
+                while True :
+                    coup = demanderCoup(self.joueurHumain.nom)
+                    if self.grille.estCaseVide(int(coup[0]), int(coup[1])):
+                        break
             else:
                 coup = self.ia.choisirCoup(self.grille)
 
