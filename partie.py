@@ -1,5 +1,6 @@
 import random
 
+import vue
 from grille import Grille
 from joueur import Joueur, JoueurHumain, IA
 from vue import afficherBienvenue, demanderNomJoueur, afficherGrille, demanderCoup, afficherTourJoue, nettoyageConsole, \
@@ -8,6 +9,7 @@ from vue import afficherBienvenue, demanderNomJoueur, afficherGrille, demanderCo
 
 class Partie:
     def __init__(self):
+        vue.nettoyageConsole()
         self.joueurHumain = JoueurHumain(demanderNomJoueur(), True if random.randint(0,1) == 0 else False)
         self.ia = IA(False if self.joueurHumain.aSonTour else True)
         self.grille = Grille()
@@ -57,3 +59,12 @@ class Partie:
             afficherResultat(gagnant)
         else:
             afficherResultat("Nul")
+        self.rejouer()
+
+
+    def rejouer(self):
+        if vue.demanderRejouer():
+            vue.nettoyageConsole()
+            import appLauncher
+            appLauncher.launch()
+        else: exit()

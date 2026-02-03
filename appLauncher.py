@@ -1,4 +1,7 @@
 from partie import Partie
 
-partie = Partie()
-partie.lancerPartie()
+def launch():
+    partie = Partie()
+    partie.lancerPartie()
+
+launch()
