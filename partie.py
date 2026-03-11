@@ -33,6 +33,8 @@ class Partie:
                     coup = demanderCoup(self.joueurHumain.nom)
                     if self.grille.estCaseVide(int(coup[0]), int(coup[1])):
                         break
+                    else:
+                        vue.afficherErreur("occupee")
             else:
                 coup = self.ia.choisirCoup(self.grille)
 
@@ -44,7 +46,7 @@ class Partie:
                 victoire = True
                 gagnant = joueur_actuel.nom
 
-            # Affichage du tour et nettoyage (optionnel ici pour voir le dernier coup)
+            # Affichage du tour et nettoyage
             afficherTourJoue(joueur_actuel.nom, coup)
 
             if not victoire:

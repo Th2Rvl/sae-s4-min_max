@@ -1,2 +1,3 @@
 @echo off
-python appLauncher.py
+py ./appLauncher.py
+pause
