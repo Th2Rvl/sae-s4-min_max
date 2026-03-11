@@ -30,6 +30,7 @@ class Partie:
             joueur_actuel = self.joueurHumain if self.joueurHumain.aSonTour else self.ia
 
             # Récupération du coup
+            # Si c'est au tour de l'humain
             if self.joueurHumain.aSonTour:
                 coup = ""
                 while True:
@@ -40,7 +41,7 @@ class Partie:
                     else:
                         vue.afficherErreur("occupee")
             else:
-                # Si c'est l'IA, on appelle son algorithme
+                # Sinon si c'est au tour de l'IA, on appelle son algorithme
                 coup = self.ia.choisirCoup(self.grille)
 
             # Application du coup sur la grille
@@ -70,11 +71,7 @@ class Partie:
         self.rejouer()
 
     def rejouer(self):
-        """
-        Demande au joueur s'il veut rejouer.
-        Note architecturale : L'import local d'appLauncher permet de contourner
-        les imports circulaires, bien qu'une boucle while dans appLauncher serait plus classique.
-        """
+        # Demande au joueur s'il veut rejouer.
         if vue.demanderRejouer():
             vue.nettoyageConsole()
             import appLauncher
