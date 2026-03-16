@@ -25,7 +25,7 @@ def afficherGrille(grille):
 def afficherBienvenue():
     # Affiche l'entête du jeu.
     print("\n" + "*" * 30)
-    print("* JEU DU TIC-TAC-TOE     *")
+    print("*     JEU DU TIC-TAC-TOE     *")
     print("*" * 30)
     print("Règles : Alignez 3 symboles pour gagner.")
     print("Format des coups : Lettre + Chiffre (ex: B2)\n")
